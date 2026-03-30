@@ -59,14 +59,14 @@ export const userLogin = async (req, res) => {
       const accessToken = jwt.sign(
         { id: user.id, role: user.role },
         process.env.SECRET_KEY,
-        { expiresIn: "30s" }
+        { expiresIn: "5m" }
       );
   
       //Refresh token (5 minutlik)
       const refreshToken = jwt.sign(
         { id: user.id },
         process.env.REFRESH_SECRET,
-        { expiresIn: "5m" }
+        { expiresIn: "60m" }
       );
   
       res.status(201).json({
