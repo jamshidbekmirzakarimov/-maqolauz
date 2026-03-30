@@ -1,17 +1,20 @@
-import { Pool } from "pg";
-import "dotenv/config";
+/*global process*/
+import 'dotenv/config'
+import { Pool } from 'pg'
 
 const pool = new Pool({
-  host: "localhost",
-  port: 5432,
-  user: "postgres",
-  password: "1234",
-  database: "ecommerce_products",
-});
+ connectionString: process.env.DB_URL,
+ ssl: {
+  rejectUnauthorized: true,
+ },
+})
 
-pool
-  .connect()
-  .then(() => console.log("Database ulandi ✅"))
-  .catch((error) => console.error("Xatolik ❌: ", error));
+pool.connect(() => {
+ try {
+  console.log('🌱 Dataga ulandi.')
+ } catch (error) {
+  console.log('🔥 Dataga ulanishda xatolik:', error)
+ }
+})
 
-export default pool;
+export default pool
