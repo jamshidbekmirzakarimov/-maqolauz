@@ -5,6 +5,6 @@ import { authMiddleware } from "../middleware/auth.middleware.js";
 const quotesRouter = express.Router();
 
 quotesRouter.get("/", getQuotes);
-quotesRouter.post("/", authMiddleware, createQuote);
+quotesRouter.post("/", createQuote);
 
 export default quotesRouter;
